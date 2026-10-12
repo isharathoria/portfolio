@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isha — Portfolio</title>
+<meta name="description" content="Isha, Product Manager for enterprise AI products. The story so far: from IIT Bombay to first hire at Care.Fi to clinical AI at Qure.ai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f5ef; --paper:#fffdf9; --ink:#1c1a17; --ink2:#4d4840; --ink3:#857d71; --line:#e7e0d4;
+  --accent:#b4532a; --accent-50:#fbeee6; --accent-100:#f2d6c6;
+  --azure:#2f5f8a; --azure-600:#24496b; --azure-50:#eaf1f8; --azure-100:#cfdeec;
+  --emerald:#2f7a55; --emerald-50:#e6f2ea; --topaz:#a8650b; --topaz-50:#fbf0dc;
+  --night:#1d1a24;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Inter",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130f; --paper:#1d1a15; --ink:#f3eee6; --ink2:#c9c1b4; --ink3:#968d80; --line:#332e26;
+    --accent:#e58a5c; --accent-50:#2e1d14; --accent-100:#4a2c1d;
+    --azure:#8db6dc; --azure-600:#b2cfe9; --azure-50:#18232e; --azure-100:#263749;
+    --emerald:#6fcf9d; --emerald-50:#15291f; --topaz:#eab45a; --topaz-50:#30240f;
+    --night:#0e0c12;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130f; --paper:#1d1a15; --ink:#f3eee6; --ink2:#c9c1b4; --ink3:#968d80; --line:#332e26;
+  --accent:#e58a5c; --accent-50:#2e1d14; --accent-100:#4a2c1d;
+  --azure:#8db6dc; --azure-600:#b2cfe9; --azure-50:#18232e; --azure-100:#263749;
+  --emerald:#6fcf9d; --emerald-50:#15291f; --topaz:#eab45a; --topaz-50:#30240f;
+  --night:#0e0c12;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 var(--sans);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;line-height:1.12}
+p{color:var(--ink2)}
+p + p{margin-top:1em}
+strong{color:var(--ink);font-weight:600}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.wide{max-width:1040px;margin:0 auto;padding:0 24px}
+
+/* progress */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:30}
+
+/* chapter nav */
+.toc{position:fixed;left:24px;top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:10px}
+.toc a{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.toc a i{width:22px;height:2px;background:var(--line);transition:width .2s,background .2s}
+.toc a span{opacity:0;transition:opacity .2s}
+.toc:hover a span,.toc a.on span{opacity:1}
+.toc a.on{color:var(--accent)}
+.toc a.on i{width:36px;background:var(--accent)}
+@media (max-width:1180px){.toc{display:none}}
+
+/* opening */
+.open{min-height:92vh;display:flex;align-items:center;padding:90px 0 60px;position:relative;overflow:hidden}
+.open::after{content:"";position:absolute;right:-180px;top:-120px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,var(--accent-100),transparent 70%);opacity:.7;pointer-events:none}
+.open .wrap{position:relative;z-index:1}
+.kick{font:600 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.open h1{font-size:76px;font-weight:600;margin:18px 0 10px}
+.open .lead{font-family:var(--serif);font-size:28px;line-height:1.35;color:var(--ink);font-weight:400;max-width:640px}
+.open .lead em{font-style:italic;color:var(--accent)}
+.open p.sub{margin-top:22px;max-width:600px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:30px;font:500 14px/1.4 var(--sans);color:var(--ink3)}
+.facts b{color:var(--ink);font-weight:600}
+.scroll{margin-top:44px;display:inline-flex;align-items:center;gap:10px;font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);text-decoration:none}
+.scroll::after{content:"";width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px) rotate(45deg)}}
+@media (prefers-reduced-motion:reduce){.scroll::after{animation:none}}
+
+/* chapters */
+.chapter{padding:90px 0 30px;scroll-margin-top:20px}
+.ch-label{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+.ch-num{font:600 13px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.ch-when{font:500 13px/1 var(--sans);color:var(--ink3)}
+.chapter h2{font-size:46px;margin-bottom:22px}
+.chapter h2 em{font-style:italic;font-weight:500;color:var(--accent)}
+.chapter h3{font-size:27px;margin:46px 0 14px}
+.dropcap::first-letter{font-family:var(--serif);float:left;font-size:4.1em;line-height:.82;padding:6px 10px 0 0;color:var(--accent);font-weight:600}
+
+.pull{margin:38px 0;padding:6px 0 6px 26px;border-left:3px solid var(--accent)}
+.pull b{display:block;font:600 52px/1 var(--serif);color:var(--ink);letter-spacing:-.02em}
+.pull b span{color:var(--accent);font-weight:500}
+.pull small{display:block;margin-top:10px;font-size:15px;color:var(--ink3)}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:34px 0}
+.stats div{background:var(--paper);padding:18px 20px}
+.stats b{display:block;font:600 30px/1.05 var(--serif);color:var(--ink);margin-bottom:4px}
+.stats span{font-size:13.5px;color:var(--ink3);line-height:1.4;display:block}
+
+/* story blocks */
+.story{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:34px 36px;margin:30px 0}
+.story .tag{font:600 11.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.story h3{margin:10px 0 18px;font-size:28px}
+.beats{display:grid;gap:16px}
+.beat{display:grid;grid-template-columns:130px 1fr;gap:18px}
+.beat > span{font:600 12px/1.6 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding-top:3px}
+.beat p{margin:0}
+.result{display:flex;align-items:center;gap:20px;background:var(--night);color:#fff;border-radius:14px;padding:20px 24px;margin:22px 0 4px}
+.result b{font:600 38px/1 var(--serif);white-space:nowrap}
+.result b span{color:#f0a37c;font-weight:500}
+.result p{color:#d6d0c6;font-size:15px;margin:0}
+
+details.deep{margin-top:20px;border-top:1px solid var(--line);padding-top:16px}
+details.deep > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font:600 14px/1 var(--sans);color:var(--accent);padding:10px 14px;border:1px solid var(--accent-100);background:var(--accent-50);border-radius:10px}
+details.deep > summary::-webkit-details-marker{display:none}
+details.deep > summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s}
+details.deep[open] > summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+details.deep .c{display:none}
+details.deep[open] .o{display:none}
+details.deep[open] .c{display:inline}
+.flow{margin:20px 0 6px;border:1px solid var(--line);border-radius:12px;padding:16px 12px 10px;overflow-x:auto;background:var(--bg)}
+.flow svg{display:block;width:100%;min-width:640px;height:auto}
+.mini{font:700 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:22px 0 10px}
+ul.list{list-style:none}
+ul.list li{position:relative;padding-left:20px;margin:7px 0;color:var(--ink2);font-size:15.5px;line-height:1.6}
+ul.list li::before{content:"";position:absolute;left:2px;top:.68em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+ul.list li b{color:var(--ink);font-weight:600}
+.measure{display:flex;flex-wrap:wrap;gap:8px}
+.measure span{font-size:13.5px;color:var(--ink2);border:1px dashed var(--line);border-radius:8px;padding:6px 10px}
+
+/* milestones (Qure) */
+.miles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:28px 0}
+.miles div{border-top:2px solid var(--ink);padding-top:14px}
+.miles b{display:block;font:600 22px/1.2 var(--serif);color:var(--ink);margin-bottom:6px}
+.miles p{font-size:15px}
+
+/* customer */
+.qa{display:grid;gap:0;margin-top:20px;border-top:1px solid var(--line)}
+.qa div{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.qa b{font:600 19px/1.3 var(--serif);color:var(--ink)}
+.qa p{font-size:15.5px;margin:0}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 32px;margin-top:20px}
+.skills h4{font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.skills p{font-size:15.5px;line-height:1.7}
+
+/* beyond */
+.beyond{background:var(--night);color:#fff;border-radius:22px;padding:48px 44px;margin-top:20px;position:relative;overflow:hidden}
+.beyond::after{content:"";position:absolute;right:-100px;bottom:-140px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(229,138,92,.35),transparent 70%)}
+.beyond h2{color:#fff;font-size:38px;margin-bottom:14px}
+.beyond > p{color:#d6d0c6;max-width:560px}
+.beyond ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px;position:relative;z-index:1}
+.beyond li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px}
+.beyond li i{font-style:normal;font-size:26px;display:block;margin-bottom:10px}
+.beyond li b{font:600 18px/1.25 var(--serif);color:#fff}
+
+/* epilogue */
+.epi{text-align:center;padding:100px 0 60px}
+.epi p.big{font:400 30px/1.4 var(--serif);color:var(--ink);max-width:680px;margin:0 auto}
+.epi p.big em{color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--ink3);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.btn{background:none;border:1px solid var(--line);color:var(--ink2);border-radius:8px;padding:7px 12px;font:600 12.5px/1 var(--sans);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+
+@media (max-width:760px){
+  body{font-size:16px}
+  .wrap,.wide{padding:0 16px}
+  .open{min-height:auto;padding:64px 0 40px}
+  .open h1{font-size:52px}
+  .open .lead{font-size:22px}
+  .chapter{padding:64px 0 20px}
+  .chapter h2{font-size:34px}
+  .chapter h3{font-size:23px}
+  .pull b{font-size:40px}
+  .stats{grid-template-columns:1fr 1fr}
+  .story{padding:24px 18px}
+  .story h3{font-size:23px}
+  .beat{grid-template-columns:1fr;gap:4px}
+  .result{flex-direction:column;align-items:flex-start;gap:8px}
+  .result b{font-size:32px}
+  .miles,.skills{grid-template-columns:1fr}
+  .qa div{grid-template-columns:1fr;gap:6px}
+  .beyond{padding:32px 20px}
+  .beyond ul{grid-template-columns:1fr}
+  .epi p.big{font-size:23px}
+}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--ink:#1c1a17;--ink2:#4d4840;--ink3:#857d71;--line:#e7e0d4;--accent:#b4532a;--accent-50:#fbeee6;--accent-100:#f2d6c6;--azure:#2f5f8a;--azure-600:#24496b;--azure-50:#eaf1f8;--azure-100:#cfdeec;--emerald:#2f7a55;--emerald-50:#e6f2ea;--topaz:#a8650b;--topaz-50:#fbf0dc}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:14px}
+  html{zoom:.85}
+  .toc,.progress,.scroll,.btn,details.deep > summary{display:none}
+  .open{min-height:auto;padding:30px 0}
+  .chapter{break-before:page;padding-top:20px}
+  .story,.pull,.result,.beyond li,.qa div{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<nav class="toc" aria-label="Chapters">
+  <a href="#prologue"><i></i><span>Prologue</span></a>
+  <a href="#carefi"><i></i><span>Care.Fi</span></a>
+  <a href="#qure"><i></i><span>Qure.ai</span></a>
+  <a href="#customers"><i></i><span>Customers</span></a>
+  <a href="#toolkit"><i></i><span>Toolkit</span></a>
+  <a href="#beyond"><i></i><span>Beyond work</span></a>
+</nav>
+
+<!-- ============ OPENING ============ -->
+<header class="open">
+  <div class="wrap">
+    <div class="kick">Product Manager · Enterprise AI Products</div>
+    <h1>Isha</h1>
+    <p class="lead">I find the step where a workflow breaks, sit with the people stuck in it, and <em>build what fixes it.</em></p>
+    <p class="sub">This is the story so far: an engineering degree, a company built from its first hire, and clinical AI taken to US health systems. Along the way: hospital discharge cut from 6 hours to 30 minutes, health-system onboarding from 10 months to 6, and two FDA submissions in six months.</p>
+    <div class="facts">
+      <span><b>Qure.ai</b> · Product Manager, 9 months</span>
+      <span><b>Care.Fi</b> · First hire, ~4 years</span>
+      <span><b>IIT Bombay</b> · Mechanical Engineering</span>
+    </div>
+    <a class="scroll" href="#prologue">Read the story</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ PROLOGUE ============ -->
+<section class="chapter" id="prologue">
+  <div class="wrap">
+    <div class="ch-label"><span class="ch-num">Prologue</span><span class="ch-when">IIT Bombay and early roles</span></div>
+    <h2>Learning to <em>build</em></h2>
+    <p class="dropcap">I trained as a mechanical engineer at IIT Bombay, and my first jobs pulled me toward money and how it moves. At Deutsche Bank I worked on Manch, the bank's financial-literacy initiative. At IvyCap Ventures I worked with one of their portfolio companies and saw a young business from the investor's side of the table.</p>
+    <p>Then I wanted to build something myself. I started a mentorship and tutoring platform that connected students with mentors and experts. We signed up <strong>5 partner schools</strong>, recruited <strong>100+ mentors</strong> and onboarded about <strong>2,000 students</strong>.</p>
+    <p>Next came Avail Finance, where I worked directly with the CFO on debt fundraising and was offered a pre-placement offer. I turned it down. My manager was leaving to start a new company, and I wanted to be there from day one.</p>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 1: CARE.FI ============ -->
+<section class="chapter" id="carefi">
+  <div class="wrap">
+    <div class="ch-label"><span class="ch-num">Chapter one</span><span class="ch-when">Care.Fi · ~4 years</span></div>
+    <h2>Building a company from <em>the first hire</em></h2>
+    <p class="dropcap">That company was Care.Fi, a healthcare fintech, and I was its first employee. There was no defined role, so I took whatever the company needed. Over four years that grew into strategy, product, operations, lending, finance, treasury, fundraising and compliance.</p>
+    <p>Within my first two years the company planned to hire someone externally to lead fundraising. I stepped into the role instead and raised directly from investors. In total we raised <strong>$8M+ in debt from 8+ institutions</strong> and brought our cost of capital down by <strong>300 bps</strong>. I also worked on RBI compliance and the NBFC licence, and on taking Care.Fi into the Gulf with our <strong>UAE expansion</strong>.</p>
+    <p>As we grew I built the team from 1 to 15 people, setting the KPIs and KRAs for Operations, Credit and Sales myself. I was also the only person in product who worked directly with hospital customers, and I led two products from research to deployment.</p>
+
+    <div class="stats">
+      <div><b>50+</b><span>hospitals across 10+ markets</span></div>
+      <div><b>4×</b><span>year-on-year revenue growth</span></div>
+      <div><b>95%</b><span>recurring business</span></div>
+      <div><b>$8M+</b><span>debt raised from 8+ institutions</span></div>
+      <div><b>300 bps</b><span>lower cost of capital</span></div>
+      <div><b>1 → 15</b><span>team built from scratch</span></div>
+    </div>
+
+    <article class="story" id="discharge">
+      <div class="tag">Product story · Care.Fi</div>
+      <h3>The six-hour wait to go home</h3>
+      <div class="beats">
+        <div class="beat"><span>The problem</span><p>For insured patients, discharge waits on paperwork. The hospital collects the final bill, discharge summary, ID and policy documents, sends them to the insurer or TPA, and waits for approval. Done by hand across email and portals, with documents often missing, this took around <strong>six hours</strong>. Patients waited and beds stayed blocked.</p></div>
+        <div class="beat"><span>The insight</span><p>Most of the delay came from handoffs and incomplete files, not from the insurer's decision. If the file was complete the first time and submitted and tracked digitally, most of the waiting would go away.</p></div>
+        <div class="beat"><span>What we built</span><p>A digital case file per admission, completeness checks for each insurer, pre-filled pre-authorisation forms, one submission flow to insurers and TPAs, and live status tracking with alerts for the billing desk.</p></div>
+      </div>
+      <div class="result"><b>6 <small>hrs</small> <span>→</span> 30 <small>min</small></b><p>Discharge turnaround for cashless patients, through faster document submission and pre-authorisation.</p></div>
+      <details class="deep">
+        <summary><span class="o">How it worked</span><span class="c">Show less</span></summary>
+        <div class="flow"><svg viewBox="0 0 760 140" role="img" aria-label="Discharge advised, documents captured digitally, completeness check, submitted to insurer or TPA, live status and query handling, approval, patient discharged">
+      <defs><marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--azure)"/></marker></defs>
+      <g font-family="Inter, Arial, sans-serif" text-anchor="middle">
+        <rect x="4" y="30" width="96" height="54" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="52" y="54" font-size="12.5" font-weight="600" fill="var(--ink)">Discharge</text><text x="52" y="71" font-size="10.5" fill="var(--ink3)">advised</text>
+        <rect x="124" y="30" width="100" height="54" rx="12" fill="var(--azure-50)" stroke="var(--azure)" stroke-width="1.5"/>
+        <text x="174" y="54" font-size="12.5" font-weight="600" fill="var(--azure-600)">Capture docs</text><text x="174" y="71" font-size="10.5" fill="var(--azure-600)">one case file</text>
+        <rect x="248" y="30" width="104" height="54" rx="12" fill="var(--topaz-50)" stroke="var(--topaz)" stroke-width="1.5"/>
+        <text x="300" y="54" font-size="12.5" font-weight="600" fill="var(--topaz)">Completeness</text><text x="300" y="71" font-size="10.5" fill="var(--topaz)">checklist</text>
+        <rect x="376" y="30" width="104" height="54" rx="12" fill="var(--azure-50)" stroke="var(--azure)" stroke-width="1.5"/>
+        <text x="428" y="54" font-size="12.5" font-weight="600" fill="var(--azure-600)">Submit</text><text x="428" y="71" font-size="10.5" fill="var(--azure-600)">insurer / TPA</text>
+        <rect x="504" y="30" width="110" height="54" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="559" y="54" font-size="12.5" font-weight="600" fill="var(--ink)">Track status</text><text x="559" y="71" font-size="10.5" fill="var(--ink3)">queries · alerts</text>
+        <rect x="638" y="30" width="116" height="54" rx="12" fill="var(--emerald-50)" stroke="var(--emerald)" stroke-width="1.5"/>
+        <text x="696" y="54" font-size="12.5" font-weight="600" fill="var(--emerald)">Approved</text><text x="696" y="71" font-size="10.5" fill="var(--emerald)">patient discharged</text>
+        <g stroke="var(--azure)" stroke-width="1.6" fill="none" marker-end="url(#a4)">
+          <line x1="102" y1="57" x2="121" y2="57"/><line x1="226" y1="57" x2="245" y2="57"/><line x1="354" y1="57" x2="373" y2="57"/><line x1="482" y1="57" x2="501" y2="57"/><line x1="616" y1="57" x2="635" y2="57"/>
+          <path d="M559 86 C559 116, 174 116, 174 87"/>
+        </g>
+        <text x="366" y="132" font-size="10.5" fill="var(--ink3)">insurer queries go back to the case file and are resolved in one place</text>
+      </g>
+    </svg></div>
+        <div class="mini">Under the hood</div>
+        <ul class="list">
+          <li><b>Digital case file.</b> One record per admission, with the bill, discharge summary, ID and policy documents uploaded or scanned in.</li>
+          <li><b>Completeness checks.</b> Per-insurer checklists and field validation before submission, so gaps are caught at the hospital.</li>
+          <li><b>Pre-filled forms.</b> Pre-authorisation and discharge forms generated from hospital and policy data in each insurer's format.</li>
+          <li><b>Submission and tracking.</b> One submission flow to insurer and TPA channels, with a case timeline, SLA timers and alerts when queries or approvals arrive.</li>
+          <li><b>Ops dashboard.</b> Turnaround per case, stuck cases, and query reasons by insurer.</li>
+        </ul>
+        <div class="mini">How I'd keep measuring it</div>
+        <div class="measure"><span>Median &amp; 90th-percentile discharge time</span><span>First-time-complete submissions</span><span>Insurer query rate</span><span>Cases breaching SLA</span><span>Desk time per case</span></div>
+      </details>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 2: QURE ============ -->
+<section class="chapter" id="qure">
+  <div class="wrap">
+    <div class="ch-label"><span class="ch-num">Chapter two</span><span class="ch-when">Qure.ai · 9 months</span></div>
+    <h2>Taking clinical AI <em>to the US</em></h2>
+    <p class="dropcap">I wanted to go deeper into product and closer to the people using it, and healthcare AI was where that mattered most. A strong model is useless if it doesn't fit how clinicians work or meet regulatory requirements. At Qure.ai I owned products end to end: customer discovery, PRDs, model improvement, regulatory submission and deployment.</p>
+
+    <div class="miles">
+      <div><b>An AI cardiovascular product, through FDA</b><p>Took a new cardiovascular product line to FDA submission for the US market, owning strategy, discovery, PRDs, model improvement and the submission itself.</p></div>
+      <div><b>Two more FDA submissions in six months</b><p>Delivered two new submissions back to back.</p></div>
+      <div><b>US expansion</b><p>Worked on taking Qure.ai's products into the US market, deploying into the clinical workflows of 7+ US health systems.</p></div>
+      <div><b>Early lung-cancer detection</b><p>Led the customer-facing UI for an early lung-cancer detection product.</p></div>
+    </div>
+
+    <p>Alongside this I kept finding slow, manual workflows around the product and building AI tools to fix them. Here are three.</p>
+
+    <!-- AI story 1 -->
+    <article class="story" id="rag">
+      <div class="tag">AI story 1 · RAG agent</div>
+      <h3>The questions only experts could answer</h3>
+      <div class="beats">
+        <div class="beat"><span>The problem</span><p>Onboarding a new US health system meant digging through scattered product, technical, integration, deployment and process documents. New team members depended on experienced colleagues, the same questions came up again and again, and onboarding slowed down.</p></div>
+        <div class="beat"><span>Why RAG</span><p>The answers were specific to the company, current and contextual, which a general LLM doesn't know. Retrieval keeps every answer grounded in approved internal sources, traceable back to them, and up to date without retraining.</p></div>
+        <div class="beat"><span>What I built</span><p>An agent that takes a plain-language question, retrieves the right internal knowledge and returns a grounded answer with its sources. I framed the opportunity, defined the workflow and success criteria, structured how knowledge is retrieved, wrote the prompts and checked whether the answers held up.</p></div>
+      </div>
+      <div class="result"><b>10 <span>→</span> 6 <small>months</small></b><p>Time to onboard a new US health system, about 40% faster.</p></div>
+      <details class="deep">
+        <summary><span class="o">How it worked</span><span class="c">Show less</span></summary>
+        <div class="flow"><svg viewBox="0 0 760 140" role="img" aria-label="User query, retrieval from internal knowledge, relevant context, LLM, grounded answer with sources">
+      <defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--azure)"/></marker></defs>
+      <g font-family="Inter, Arial, sans-serif" text-anchor="middle">
+        <rect x="262" y="2" width="136" height="24" rx="6" fill="none" stroke="var(--ink3)" stroke-dasharray="4 3"/>
+        <text x="330" y="18" font-size="10.5" fill="var(--ink2)">product · technical · deployment docs</text>
+        <line x1="330" y1="27" x2="330" y2="38" stroke="var(--ink3)" stroke-width="1.5"/>
+        <rect x="6" y="40" width="100" height="54" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="56" y="64" font-size="13" font-weight="600" fill="var(--ink)">User</text><text x="56" y="81" font-size="10.5" fill="var(--ink3)">onboarding team</text>
+        <rect x="136" y="40" width="108" height="54" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="190" y="64" font-size="13" font-weight="600" fill="var(--ink)">Query</text><text x="190" y="81" font-size="10.5" fill="var(--ink3)">plain language</text>
+        <rect x="274" y="40" width="112" height="54" rx="12" fill="var(--azure-50)" stroke="var(--azure)" stroke-width="1.5"/>
+        <text x="330" y="64" font-size="13" font-weight="600" fill="var(--azure-600)">Retrieval</text><text x="330" y="81" font-size="10.5" fill="var(--azure-600)">search internal KB</text>
+        <rect x="416" y="40" width="112" height="54" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="472" y="64" font-size="13" font-weight="600" fill="var(--ink)">Context</text><text x="472" y="81" font-size="10.5" fill="var(--ink3)">top-matched chunks</text>
+        <rect x="558" y="40" width="80" height="54" rx="12" fill="var(--azure-50)" stroke="var(--azure)" stroke-width="1.5"/>
+        <text x="598" y="64" font-size="13" font-weight="600" fill="var(--azure-600)">LLM</text><text x="598" y="81" font-size="10.5" fill="var(--azure-600)">generate</text>
+        <rect x="668" y="40" width="86" height="54" rx="12" fill="var(--emerald-50)" stroke="var(--emerald)" stroke-width="1.5"/>
+        <text x="711" y="62" font-size="12.5" font-weight="600" fill="var(--emerald)">Grounded</text><text x="711" y="77" font-size="12.5" font-weight="600" fill="var(--emerald)">answer</text><text x="711" y="89" font-size="9.5" fill="var(--emerald)">+ sources</text>
+        <g stroke="var(--azure)" stroke-width="1.6" fill="none" marker-end="url(#a1)">
+          <line x1="108" y1="67" x2="133" y2="67"/><line x1="246" y1="67" x2="271" y2="67"/><line x1="388" y1="67" x2="413" y2="67"/><line x1="530" y1="67" x2="555" y2="67"/><line x1="640" y1="67" x2="665" y2="67"/>
+          <path d="M711 96 C711 120, 56 120, 56 97"/>
+        </g>
+        <text x="380" y="134" font-size="10.5" fill="var(--ink3)">answer returned to the user · follow-ups refine the next query</text>
+      </g>
+    </svg></div>
+        <ul class="list">
+          <li><b>Less dependency</b> on experienced team members for repeat questions.</li>
+          <li><b>Faster search</b> across fragmented documentation.</li>
+          <li><b>Reusable</b> across other onboarding and deployment workflows.</li>
+        </ul>
+        <div class="mini">How I'd keep measuring it</div>
+        <div class="measure"><span>Retrieval relevance</span><span>Answer groundedness</span><span>Task completion</span><span>Time-to-answer</span><span>Repeat escalations</span><span>Adoption &amp; satisfaction</span></div>
+      </details>
+    </article>
+
+    <!-- AI story 2 -->
+    <article class="story" id="llm">
+      <div class="tag">AI story 2 · LLM-powered clinical tool</div>
+      <h3>An AI that clinicians would actually trust</h3>
+      <div class="beats">
+        <div class="beat"><span>The problem</span><p>In a clinical setting, an LLM is only useful if its output is reliable, easy to check and fits how clinicians already work. A capable model was not enough. The workflow around it had to make the output trustworthy.</p></div>
+        <div class="beat"><span>The approach</span><p>Define what "good" means before shipping: what the model should do, how to tell when its output is right, and where the clinician stays in control. I designed the prompts, the evaluation criteria and the clinician interaction, with a human in the loop, and tested assumptions against real cases.</p></div>
+      </div>
+      <div class="result"><b>40% <span>→</span> 70%</b><p>Follow-up rate after the LLM-powered workflow went live.</p></div>
+      <details class="deep">
+        <summary><span class="o">How it worked</span><span class="c">Show less</span></summary>
+        <div class="flow"><svg viewBox="0 0 760 130" role="img" aria-label="Clinical input, structured prompt, LLM, evaluation checks, clinician review, output in workflow, with feedback loop to prompt">
+      <defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--azure)"/></marker></defs>
+      <g font-family="Inter, Arial, sans-serif" text-anchor="middle">
+        <rect x="6" y="20" width="104" height="54" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="58" y="44" font-size="13" font-weight="600" fill="var(--ink)">Clinical input</text><text x="58" y="61" font-size="10.5" fill="var(--ink3)">case context</text>
+        <rect x="136" y="20" width="110" height="54" rx="12" fill="var(--azure-50)" stroke="var(--azure)" stroke-width="1.5"/>
+        <text x="191" y="44" font-size="13" font-weight="600" fill="var(--azure-600)">Prompt design</text><text x="191" y="61" font-size="10.5" fill="var(--azure-600)">structured, scoped</text>
+        <rect x="272" y="20" width="84" height="54" rx="12" fill="var(--azure-50)" stroke="var(--azure)" stroke-width="1.5"/>
+        <text x="314" y="44" font-size="13" font-weight="600" fill="var(--azure-600)">LLM</text><text x="314" y="61" font-size="10.5" fill="var(--azure-600)">draft output</text>
+        <rect x="382" y="20" width="112" height="54" rx="12" fill="var(--topaz-50)" stroke="var(--topaz)" stroke-width="1.5"/>
+        <text x="438" y="44" font-size="13" font-weight="600" fill="var(--topaz)">Eval criteria</text><text x="438" y="61" font-size="10.5" fill="var(--topaz)">quality checks</text>
+        <rect x="520" y="20" width="110" height="54" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="575" y="44" font-size="13" font-weight="600" fill="var(--ink)">Clinician</text><text x="575" y="61" font-size="10.5" fill="var(--ink3)">reviews &amp; decides</text>
+        <rect x="656" y="20" width="98" height="54" rx="12" fill="var(--emerald-50)" stroke="var(--emerald)" stroke-width="1.5"/>
+        <text x="705" y="44" font-size="12.5" font-weight="600" fill="var(--emerald)">In workflow</text><text x="705" y="61" font-size="10.5" fill="var(--emerald)">trusted output</text>
+        <g stroke="var(--azure)" stroke-width="1.6" fill="none" marker-end="url(#a2)">
+          <line x1="112" y1="47" x2="133" y2="47"/><line x1="248" y1="47" x2="269" y2="47"/><line x1="358" y1="47" x2="379" y2="47"/><line x1="496" y1="47" x2="517" y2="47"/><line x1="632" y1="47" x2="653" y2="47"/>
+          <path d="M575 76 C575 108, 191 108, 191 77"/>
+        </g>
+        <text x="383" y="124" font-size="10.5" fill="var(--ink3)">feedback from evals and clinicians refines the prompts</text>
+      </g>
+    </svg></div>
+        <ul class="list">
+          <li><b>Consistent:</b> structured prompts made outputs more predictable.</li>
+          <li><b>Measurable:</b> clear eval criteria defined what "good" means.</li>
+          <li><b>Workflow-fit:</b> built into how clinicians already work, with them reviewing before acting.</li>
+        </ul>
+        <div class="mini">How I'd keep measuring it</div>
+        <div class="measure"><span>Accuracy vs. expert review</span><span>Clinician acceptance / edit rate</span><span>Error &amp; unsafe-output rate</span><span>Time saved per case</span><span>Repeat usage</span></div>
+      </details>
+    </article>
+
+    <!-- AI story 3 -->
+    <article class="story" id="demo">
+      <div class="tag">AI story 3 · Automation</div>
+      <h3>Every demo, built by hand</h3>
+      <div class="beats">
+        <div class="beat"><span>The problem</span><p>Every customer conversation needed a demo and deck tailored to that health system's use case. Building them by hand was slow and repetitive, and quality varied depending on who made them.</p></div>
+        <div class="beat"><span>The insight</span><p>Most of every deck was the same: product facts, the value story, the demo flow. Only the customer context changed, so AI could combine the two on demand.</p></div>
+        <div class="beat"><span>What I built</span><p>An AI workflow that turns customer context and product knowledge into a tailored demo script and pitch deck, with templates and a quick human review so it stays accurate and on-brand.</p></div>
+      </div>
+      <div class="result"><b><span>↓</span> Product bandwidth</b><p>The product team no longer builds each new product demo and deck by hand.</p></div>
+      <details class="deep">
+        <summary><span class="o">How it worked</span><span class="c">Show less</span></summary>
+        <div class="flow"><svg viewBox="0 0 760 130" role="img" aria-label="Customer context and product knowledge feed an AI generator that produces a demo script and deck, which is reviewed then delivered">
+      <defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--azure)"/></marker></defs>
+      <g font-family="Inter, Arial, sans-serif" text-anchor="middle">
+        <rect x="6" y="6" width="130" height="46" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="71" y="27" font-size="12.5" font-weight="600" fill="var(--ink)">Customer context</text><text x="71" y="42" font-size="10.5" fill="var(--ink3)">use case · stakeholders</text>
+        <rect x="6" y="70" width="130" height="46" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="71" y="91" font-size="12.5" font-weight="600" fill="var(--ink)">Product knowledge</text><text x="71" y="106" font-size="10.5" fill="var(--ink3)">features · proof points</text>
+        <rect x="184" y="34" width="130" height="54" rx="12" fill="var(--azure-50)" stroke="var(--azure)" stroke-width="1.5"/>
+        <text x="249" y="58" font-size="13" font-weight="600" fill="var(--azure-600)">AI generator</text><text x="249" y="75" font-size="10.5" fill="var(--azure-600)">prompts + templates</text>
+        <rect x="362" y="6" width="118" height="46" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="421" y="27" font-size="12.5" font-weight="600" fill="var(--ink)">Demo script</text><text x="421" y="42" font-size="10.5" fill="var(--ink3)">tailored flow</text>
+        <rect x="362" y="70" width="118" height="46" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="421" y="91" font-size="12.5" font-weight="600" fill="var(--ink)">Pitch deck</text><text x="421" y="106" font-size="10.5" fill="var(--ink3)">on-brand slides</text>
+        <rect x="528" y="34" width="100" height="54" rx="12" fill="var(--topaz-50)" stroke="var(--topaz)" stroke-width="1.5"/>
+        <text x="578" y="58" font-size="13" font-weight="600" fill="var(--topaz)">Quick review</text><text x="578" y="75" font-size="10.5" fill="var(--topaz)">human check</text>
+        <rect x="660" y="34" width="94" height="54" rx="12" fill="var(--emerald-50)" stroke="var(--emerald)" stroke-width="1.5"/>
+        <text x="707" y="58" font-size="13" font-weight="600" fill="var(--emerald)">Customer</text><text x="707" y="75" font-size="10.5" fill="var(--emerald)">meeting-ready</text>
+        <g stroke="var(--azure)" stroke-width="1.6" fill="none" marker-end="url(#a3)">
+          <path d="M138 29 C160 29, 160 52, 181 55"/><path d="M138 93 C160 93, 160 70, 181 67"/>
+          <path d="M316 55 C338 52, 338 29, 359 29"/><path d="M316 67 C338 70, 338 93, 359 93"/>
+          <path d="M482 29 C504 29, 504 52, 525 55"/><path d="M482 93 C504 93, 504 70, 525 67"/>
+          <line x1="630" y1="61" x2="657" y2="61"/>
+        </g>
+      </g>
+    </svg></div>
+        <ul class="list">
+          <li><b>Consistent story</b> and accurate messaging, whoever presents.</li>
+          <li><b>Tailored at scale:</b> every prospect gets material built for their use case.</li>
+          <li><b>Time back</b> for the customer conversation instead of formatting.</li>
+        </ul>
+        <div class="mini">How I'd keep measuring it</div>
+        <div class="measure"><span>Prep time per demo / deck</span><span>Edits needed before use</span><span>Team adoption</span><span>Demo-to-next-step conversion</span></div>
+      </details>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 3: CUSTOMERS ============ -->
+<section class="chapter" id="customers">
+  <div class="wrap">
+    <div class="ch-label"><span class="ch-num">Chapter three</span><span class="ch-when">The thread through both</span></div>
+    <h2>Always <em>in front of the customer</em></h2>
+    <p class="dropcap">Looking back, the common thread is where the work happened: with customers. I worked out their problem, fitted the product into how they already work, and stayed until it was adopted.</p>
+    <div class="qa">
+      <div><b>Deploying into real workflows</b><p>Deployed AI into the existing clinical workflows of 7+ US health systems, with integration playbooks and training frameworks for faster rollouts.</p></div>
+      <div><b>Making onboarding faster</b><p>Cut the time to onboard a new US health system from 10 months to 6.</p></div>
+      <div><b>Owning the relationship</b><p>At Care.Fi I was the only person in product working directly with hospital customers, and I led two products from research to deployment.</p></div>
+      <div><b>Demo and pre-sales</b><p>Automated tailored product demos and decks for every customer's use case.</p></div>
+      <div><b>Earning user trust</b><p>Designed AI workflows that clinicians review and verify before acting, so they adopt the output.</p></div>
+      <div><b>Many stakeholders at once</b><p>Clinicians, hospital teams, investors, 8+ lenders and regulators (FDA, RBI).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLKIT ============ -->
+<section class="chapter" id="toolkit">
+  <div class="wrap">
+    <div class="ch-label"><span class="ch-num">Interlude</span><span class="ch-when">What I picked up along the way</span></div>
+    <h2>The <em>toolkit</em></h2>
+    <div class="skills">
+      <div><h4>AI &amp; LLM products</h4><p>RAG systems · prompt engineering · LLM evaluation design · human-in-the-loop workflows · AI workflow automation · clinical AI · building with Claude</p></div>
+      <div><h4>Product management</h4><p>0 → 1 product building · customer discovery · PRDs &amp; roadmaps · workflow &amp; UX design · success metrics · deployment &amp; adoption</p></div>
+      <div><h4>Healthcare &amp; regulatory</h4><p>FDA submissions · US health-system deployments · clinical workflow integration · RBI compliance · NBFC licensing</p></div>
+      <div><h4>Business &amp; leadership</h4><p>Debt fundraising · lending &amp; credit · treasury &amp; finance · strategy · team building &amp; KPIs · stakeholder management</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEYOND ============ -->
+<section class="chapter" id="beyond">
+  <div class="wide">
+    <div class="beyond">
+      <div class="kick" style="color:#f0a37c">Beyond work</div>
+      <h2 style="margin-top:12px">Off the clock</h2>
+      <p>The same discipline shows up outside work, on the court and on the mat.</p>
+      <ul>
+        <li><i>🏸</i><b>Professional badminton player</b></li>
+        <li><i>🧘</i><b>Certified yoga teacher</b></li>
+        <li><i>🤰</i><b>Pre- and postnatal yoga teacher</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EPILOGUE ============ -->
+<section class="epi">
+  <div class="wrap">
+    <div class="kick">Next chapter</div>
+    <p class="big" style="margin-top:18px">Show me a workflow that's broken for your customers. I'll find where it breaks, and <em>build the AI that fixes it.</em></p>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>Isha · Product Manager, Enterprise AI Products</span>
+    <span>Internal details are generalised. No confidential data is shown. <button class="btn" onclick="window.print()">Save as PDF</button></span>
+  </footer>
+</div>
+
+</main>
+<script>
+(function(){
+  var bar=document.querySelector('.progress');
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function onScroll(){
+    var h=document.documentElement;
+    var p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1);
+    bar.style.width=(p*100)+'%';
+    var y=window.innerHeight*0.35, cur=-1;
+    secs.forEach(function(s,i){ if(s && s.getBoundingClientRect().top<y) cur=i; });
+    links.forEach(function(a,i){ a.classList.toggle('on',i===cur); });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  window.addEventListener('beforeprint',function(){[].forEach.call(document.querySelectorAll('details.deep'),function(d){d.open=true})});
+})();
+</script>
+</body>
+</html>
